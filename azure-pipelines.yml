@@ -1,0 +1,26 @@
+# Node.js
+# Build a general Node.js project with npm.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    npm install
+    printenv
+    npm run sample-test
+  env:
+    BROWSERSTACK_USERNAME: $(BROWSERSTACK_USERNAME)
+    BROWSERSTACK_ACCESS_KEY: ${BROWSERSTACK_ACCESS_KEY}
+    BROWSERSTACK_PROJECT_NAME: $(BROWSERSTACK_PROJECT_NAME)
+    BROWSERSTACK_BUILD_NAME: ${BROWSERSTACK_BUILD_NAME}
+    BUILD_NUMBER: ${BUILD_NUMBER}
+  displayName: 'Run a multi-line script'
