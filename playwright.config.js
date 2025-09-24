@@ -1,3 +1,5 @@
+import { devices } from '@playwright/test';
+
 // This is a sample config for what users might be running locally
 const config = {
   fullyParallel: true,
